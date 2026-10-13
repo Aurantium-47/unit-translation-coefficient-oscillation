@@ -1,0 +1,7 @@
+MANIFEST.json
+README.md
+REFERENCES.md
+RIGHTS.md
+WHITELIST.txt
+paper/proof.pdf
+paper/proof.tex

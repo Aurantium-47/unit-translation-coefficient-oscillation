@@ -1,0 +1,257 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=26mm]{geometry}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Unbounded coefficient oscillation after unit translation},pdfauthor={Aurantium}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\Z}{\mathbb Z}
+\title{Unbounded coefficient oscillation\protect\\ after unit translation}
+\author{Aurantium}
+\date{14 October 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We give an explicit recursive family of polynomials with positive
+nonincreasing integer coefficients whose translates by one have unbounded
+coefficient oscillation. Oscillation means the number of sign changes in
+the list of adjacent coefficient differences after zeros are deleted.
+At recursion step $r$, the degree is $8\cdot2^r-5$ and the oscillation
+count is at least $2r+1$. The proof preserves an alternating subsequence
+of strict differences by an integer scaling and appends two new signs
+beyond the previous degree.
+\end{abstract}
+
+\section{Statement and context}
+
+All coefficient sequences are ordered by increasing powers of $x$.
+For a polynomial $B(x)=\sum_{j=0}^{D}b_jx^j$, let $\nu(B)$ be the
+number of sign changes in
+\[
+ (b_1-b_0,b_2-b_1,\ldots,b_D-b_{D-1})
+\]
+after all zero entries have been deleted. An empty list or a list with
+one nonzero entry has zero sign changes. No coefficients outside
+$0,\ldots,D$ are included in this definition.
+A sequence is \emph{unimodal} if it weakly increases to some index and
+then weakly decreases; the index may be an endpoint. Thus every
+nonincreasing sequence is unimodal. Oscillation is a count of changes
+of direction, not a count of peaks.
+
+\begin{theorem}\label{thm:main}
+For every finite real number $R\geq0$, there is a polynomial
+$A(x)=\sum_{j=0}^{d}a_jx^j$ such that
+\[
+ a_0\geq a_1\geq\cdots\geq a_d\geq1,
+ \qquad a_j\in\Z,
+ \qquad \nu(A(x+1))\geq R.
+\]
+More precisely, the recursive family constructed below satisfies
+\begin{equation}\label{eq:bounds}
+ \deg A_r=8\cdot2^r-5,
+ \qquad \nu(A_r(x+1))\geq2r+1
+ \quad(r\in\Z_{\geq0}).
+\end{equation}
+\end{theorem}
+
+The public transcription of a 2000 report by Alvarez, Amadis and
+Rosales \cite{AAR} poses the unbounded-oscillation question for unit
+translates of unimodal polynomials. It already contains a positive,
+nonincreasing integer-coefficient example whose translate has two
+direction changes. The point here is the uniform recursive construction,
+not the existence of a first nonunimodal example. The report's authors,
+title and year are also recorded in Ek's bibliography \cite{Ek}.
+
+The direction of monotonicity matters. Boros and Moll \cite{BM} prove
+unimodality after unit translation for nondecreasing nonnegative
+coefficients. Alvarez et al.\ \cite{AA} extend this to positive integer
+shifts, and Wang and Yeh \cite{WY} to all positive real shifts.
+Those input hypotheses differ from the nonincreasing class used here.
+
+\section{Two elementary observations}
+
+\begin{lemma}\label{lem:signs}
+Let $s$ be a finite list of real numbers. If $s$ has an ordered
+subsequence of $L$ nonzero entries with alternating signs, then its
+nonzero entries have at least $L-1$ sign changes.
+\end{lemma}
+
+\begin{proof}
+Deleting zeros preserves the selected entries and their order.
+Between each consecutive pair of selected entries, the signs begin
+and end differently, so there is at least one sign change in that
+interval. These $L-1$ intervals contain disjoint sets of adjacent
+positions in the zero-deleted list. Their sign changes can therefore
+be counted separately.
+\end{proof}
+
+For $M\in\Z_{\geq0}$, put
+\begin{equation}\label{eq:SM}
+ S_M(x)=\sum_{k=0}^{M}x^k.
+\end{equation}
+The binomial theorem and Pascal's identity give, for $0\leq j\leq M$,
+\begin{align}
+ [x^j]S_M(x+1)
+ &=\sum_{k=j}^{M}\binom{k}{j}\notag\\
+ &=\sum_{k=j}^{M}
+   \left(\binom{k+1}{j+1}-\binom{k}{j+1}\right)
+ =\binom{M+1}{j+1}.\label{eq:hockey}
+\end{align}
+Here $\binom{j}{j+1}=0$. Write
+$h_j=\binom{M+1}{j+1}$ for these coefficients. Each $h_j$ lies
+between $0$ and the sum $2^{M+1}$ of its binomial row. Consequently
+\begin{equation}\label{eq:perturbation}
+ |h_{j+1}-h_j|\leq2^{M+1}
+ \qquad(0\leq j<M).
+\end{equation}
+All sums in this argument are finite.
+
+\section{The recursive construction}
+
+Set $A_0=S_3$. Once $A_r$ has degree $d_r$, define
+\begin{equation}\label{eq:recursion}
+ M_r=2d_r+5,\qquad C_r=2^{M_r+1}+1,
+ \qquad A_{r+1}=C_rA_r+S_{M_r}.
+\end{equation}
+We prove simultaneously that $A_r$ has positive nonincreasing integer
+coefficients and that, writing $B_r=A_r(x+1)$, its strict adjacent
+differences contain an ordered alternating subsequence of length
+$2r+2$, beginning positive and ending negative.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+For $r=0$, the coefficients of $A_0$ are $(1,1,1,1)$, and those of
+$B_0$ are $(4,6,4,1)$. Its adjacent differences are
+$(2,-2,-3)$; select the first two. This proves the invariant at
+$r=0$, with $d_0=3$.
+
+Suppose the invariant holds for $r$. Abbreviate $d=d_r$, $M=M_r$,
+$C=C_r$, and $A'=A_{r+1}$. If $(a_0,\ldots,a_d)$ is the
+coefficient list of $A_r$, the list for $A'$ is
+\begin{equation}\label{eq:input-list}
+ (Ca_0+1,\ldots,Ca_d+1,1,\ldots,1).
+\end{equation}
+It is positive, integral and nonincreasing: the old segment retains
+its order, its last entry exceeds $1$, and the remaining entries are
+all $1$. The leading coefficient is $1$, so $\deg A'=M$.
+
+Write $B_r=\sum_{j=0}^{d}b_jx^j$ and
+$D_j=b_{j+1}-b_j$ for $0\leq j<d$. Let
+\[
+ i_0<i_1<\cdots<i_{2r+1}\leq d-1
+\]
+be the selected indices supplied by the induction hypothesis.
+Their signs are $+,-,+,-,\ldots,+,-$.
+For the following coefficient calculation only, put $b_j=0$ when
+$j>d$. Equation~\eqref{eq:hockey} gives the coefficients
+$b'_j=Cb_j+h_j$ of $B'=A'(x+1)$ for $0\leq j\leq M$.
+Thus at each old selected index,
+\[
+ D'_j:=b'_{j+1}-b'_j=CD_j+(h_{j+1}-h_j).
+\]
+The old coefficients $b_j$ are integers, because $A_r\in\Z[x]$.
+Every selected $D_j$ is therefore a nonzero integer. By
+\eqref{eq:perturbation},
+\begin{equation}\label{eq:strict-survival}
+ |CD_j|\geq C>2^{M+1}\geq|h_{j+1}-h_j|.
+\end{equation}
+Hence $D'_j$ has the same strict sign as $D_j$ at every selected
+position. This is where the integral lower bound on the old strict
+differences is used.
+
+Two later positions provide new signs. At $j=d+1$, both old
+coefficients are zero. Since $M+1=2d+6$,
+\begin{align}
+ D'_{d+1}
+ &=\binom{2d+6}{d+3}-\binom{2d+6}{d+2}\notag\\
+ &=\frac{1}{d+3}\binom{2d+6}{d+2}>0,\label{eq:new-positive}
+\end{align}
+where the ratio of the first binomial coefficient to the second is
+$(d+4)/(d+3)>1$.
+At $j=M-1$, both old coefficients again vanish, and
+\begin{equation}\label{eq:new-negative}
+ D'_{M-1}=\binom{M+1}{M+1}-\binom{M+1}{M}
+ =1-(M+1)=-M<0.
+\end{equation}
+The indices occur in the required order:
+\begin{equation}\label{eq:index-order}
+ i_{2r+1}\leq d-1<d+1<M-1=2d+4.
+\end{equation}
+Appending $d+1$ and $M-1$ therefore extends the selected signs
+by $+,-$, to a sequence of length $2r+4$. Both are actual
+adjacent differences within the new degree $M$; no artificial
+endpoint differences are counted. This completes the induction.
+
+Lemma~\ref{lem:signs} now gives $\nu(B_r)\geq2r+1$.
+The exact degree follows from the leading coefficient in
+\eqref{eq:input-list}:
+\[
+ d_0=3,\qquad d_{r+1}=2d_r+5,
+ \qquad d_r+5=8\cdot2^r.
+\]
+Thus \eqref{eq:bounds} holds. Finally, for any finite $R\geq0$,
+choose
+\begin{equation}\label{eq:R-choice}
+ r=\max\left\{0,\left\lceil\frac{R-1}{2}\right\rceil\right\}.
+\end{equation}
+Then $2r+1\geq R$, and $A=A_r$ has every required property.
+\end{proof}
+
+\section{Scope and source provenance}
+
+The result gives a lower bound on oscillation, not an exact count
+for every $r$ or a minimum possible degree. The input monotonicity
+is weak and has an endpoint mode. The statement uses the fixed
+shift $1$ and does not assert a simultaneous conclusion for all
+positive real shifts. The proof is symbolic and self-contained;
+finite examples are not premises for its unbounded conclusion.
+
+The report mirror \cite{AAR} displays the date 10 August 2000,
+the oscillation question in Section 3 on printed page 99, and a
+definition in terms of changes of direction. It does not explicitly
+specify how zero differences are treated. Our zero-deletion convention
+is stated above. An institutional original or page image of that
+report, and its complete subsequent resolution history, have not
+been authenticated here. Ek's reference \cite{Ek} corroborates the
+bibliographic identity, not that history. Accordingly, no claim of
+first discovery, first nonunimodal example, or worldwide priority
+is made.
+
+\paragraph{Acknowledgement.}
+This note was prepared with AI assistance.
+
+\begin{thebibliography}{9}\small
+\bibitem{AAR}
+J.~Alvarez, M.~Amadis and L.~Rosales,
+\emph{Unimodality and Log-Concavity of Polynomials},
+Summer Institute in Mathematics for Undergraduates (SIMU), technical
+report, 2000. Public transcription dated 10 August 2000, Section 3,
+printed p.~99; institutional original not authenticated here.
+\url{https://www.academia.edu/121303677/Unimodality_and_Log_Concavity_of_Polynomials}.
+
+\bibitem{Ek}
+B.~Ek, \emph{q-Binomials and related symmetric unimodal polynomials},
+author manuscript, 16 April 2018. Reference [AAR00], p.~32.
+\url{https://sites.math.rutgers.edu/~bte14/Articles/Gnk/Gnk.pdf}.
+
+\bibitem{BM}
+G.~Boros and V.~H.~Moll, A criterion for unimodality,
+\emph{Electron. J. Combin.} \textbf{6} (1999), R10.
+\url{https://doi.org/10.37236/1442}.
+
+\bibitem{AA}
+J.~Alvarez, M.~Amadis, G.~Boros, D.~Karp, V.~H.~Moll and L.~Rosales,
+An extension of a criterion for unimodality,
+\emph{Electron. J. Combin.} \textbf{8} (2001), R30.
+\url{https://doi.org/10.37236/1574}.
+
+\bibitem{WY}
+Y.~Wang and Y.-N.~Yeh, Proof of a conjecture on unimodality,
+\emph{European J. Combin.} \textbf{26} (2005), 617--627.
+Official author version: \url{https://arxiv.org/abs/0809.1586v1}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,38 @@
+{
+  "title": "Unbounded coefficient oscillation after unit translation",
+  "version": "0.1.0",
+  "hash_algorithm": "SHA-256",
+  "manifest_self_excluded": true,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2186,
+      "sha256": "380dea8d3ac828480825195f2d0d1b9409478dff402f2fd220a3ecbd86dccef2"
+    },
+    {
+      "path": "REFERENCES.md",
+      "bytes": 2514,
+      "sha256": "08d29bba154270f636ecff34e24d67a0519fb2470319e76b487966adefa5d02e"
+    },
+    {
+      "path": "RIGHTS.md",
+      "bytes": 881,
+      "sha256": "8978ce89183c2a5d73e81159a81e31777049efeaa187450d0cac648083cbbda9"
+    },
+    {
+      "path": "WHITELIST.txt",
+      "bytes": 94,
+      "sha256": "b38b10cfd6ab5d181275a0cdabca48b2c2afd028ca44b37f467614fd85baa00f"
+    },
+    {
+      "path": "paper/proof.pdf",
+      "bytes": 282897,
+      "sha256": "73a598a85deee30acfee0001065ef8cb66782b3f1e478088201826f0e0788024"
+    },
+    {
+      "path": "paper/proof.tex",
+      "bytes": 10038,
+      "sha256": "af4accec1c3c0516b700a23aef27036092b0aadcb0f477d23dd103f5e8d48f05"
+    }
+  ]
+}
